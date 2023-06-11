@@ -1,0 +1,1399 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Power Electronics Lab</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link
+      href="http://cdn.syncfusion.com/18.3.0.47/js/web/flat-azure/ej.web.all.min.css"
+      rel="stylesheet"
+    />
+
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css"
+    />
+    <link href="css/new-style.css" rel="stylesheet" />
+    <link rel="stylesheet" href="css/style.css" />
+
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+    <script src="graph.js" type="text/javascript"></script>
+    <script src="http://cdn.syncfusion.com/js/assets/external/jquery-1.11.3.min.js"></script>
+    <script src="http://cdn.syncfusion.com/18.3.0.47/js/web/ej.web.all.min.js"></script>
+
+    <script src="http://cdn.syncfusion.com/js/assets/external/jquery.easing.1.3.min.js"></script>
+    <script src="http://cdn.syncfusion.com/js/assets/external/jsrender.min.js"></script>
+
+    <script
+      src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+      integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
+      integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI"
+      crossorigin="anonymous"
+    ></script>
+
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+
+    <script
+      src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"
+      integrity="sha256-VazP97ZCwtekAsvgPBSUwPFKdrwD3unUfSGVYrahUqU="
+      crossorigin="anonymous"
+    ></script>
+    <link
+      rel="stylesheet"
+      href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css"
+    />
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jsPlumb/2.15.6/js/jsplumb.min.js"></script>
+  </head>
+  <body id="body">
+    <div class="head">
+      <!--div id="exp-name" style="background-color: #ff6600; color: white">
+        <h3>Bipolar PWM Single Phase Inverter (RL Load)</h3>
+      </div-->
+    </div>
+    <div id="main" style="padding-bottom: 8px">
+      <div id="left" style="margin-left: 3px">
+        <div
+          id="symbolpalette"
+          style="border: 2px solid black; background-color: white"
+        >
+          <div data-text="Awesome" class="button" style="width: 100%">
+            <span class="actual-text"
+              >&nbsp;Electrical&nbsp;Components&nbsp;</span
+            >
+            <span class="hover-text" aria-hidden="true"
+              >&nbsp;Electrical&nbsp;Components&nbsp;</span
+            >
+          </div>
+          <!-- <div
+            class="e-component"
+            style="height: 30px; margin: 3px; margin-top: 15px"
+          >
+            <span class=""><b> Electrical Components</b> </span>
+          </div> -->
+
+          <style>
+            .center-img{
+              display: flex; justify-content: center
+            }
+          </style>
+          <div class="components">
+            <div class="comp-row">
+              <div class="comp-ele">
+                <div
+                  class="center-img"
+                  style="display: flex; justify-content: center"
+                >
+                  <div
+                    class="ele-img resistor-sym"
+                    style="height: 4.5vh; width: 6.5vw"
+                  >
+                    <img src="new-img/resistor.png" alt="" width="80%" />
+                  </div>
+                </div>
+                <div class="ele-name">Resistor</div>
+              </div>
+              <div class="comp-ele">
+                <div class="center-img">
+
+                
+                <div
+                  class="ele-img capacitor-sym"
+                  style="height: 4.5vh; width: 6.5vw"
+                >
+                  <img
+                    src="new-img/capacitor.png"
+                    alt=""
+                    height="100%"
+                    width="80%"
+                  />
+                </div></div>
+                <div class="ele-name">Capacitor</div>
+              </div>
+            </div>
+            <div class="comp-row">
+              <div class="comp-ele"><div class="center-img">
+                <div
+                  class="ele-img inductor-sym"
+                  style="
+                    height: 4.5vh;
+                    width: 6.5vw;
+                    display: flex;
+                    justify-content: center;
+                  "
+                  >
+                  <img src="new-img/inductor.png" alt="" width="90%" />
+                </div>
+                </div>
+                <div class="ele-name">Inductor</div>
+              </div>
+              <div class="comp-ele"><div class="center-img">
+                <div
+                  class="ele-img nom-sym"
+                  style="height: 4.5vh; width: 6.5vw"
+                >
+                  <img src="new-img/mosfetn - Copy.png" alt="" width="90%" />
+                </div></div>
+                <div class="ele-name">Mosfet N</div>
+              </div>
+            </div>
+            <div class="comp-row">
+              <div class="comp-ele"><div class="center-img">
+                <div class="ele-img dc-sym" style="height: 4.5vh; width: 6.5vw">
+                  <img
+                    src="new-img/dcsource.png"
+                    alt=""
+                    height="100%"
+                    width="60%"
+                  />
+                </div></div>
+                <div class="ele-name">DC Source</div>
+              </div>
+              <div class="comp-ele"><div class="center-img">
+                <div class="ele-img ac-sym" style="height: 4.5vh; width: 6.5vw">
+                  <img
+                    src="new-img/acsourceuse.png"
+                    alt=""
+                    height="100%"
+                    width="95%"
+                  />
+                </div></div>
+                <div class="ele-name">AC Source</div>
+              </div>
+            </div>
+            <div class="comp-row">
+              <div class="comp-ele"><div class="center-img">
+                <div
+                  class="ele-img swi-sym"
+                  style="height: 4.5vh; width: 6.5vw"
+                >
+                  <img
+                    src="new-img/switchuse - Copy.png"
+                    alt=""
+                    height="100%"
+                    width="80%"
+                  />
+                </div></div>
+                <div class="ele-name">Switch</div>
+              </div>
+              <div class="comp-ele"><div class="center-img">
+                <div
+                  class="ele-img not-sym"
+                  style="height: 4.5vh; width: 6.5vw"
+                >
+                  <img
+                    src="new-img/notuse - Copy.png"
+                    alt=""
+                    height="100%"
+                    width="80%"
+                  />
+                </div></div>
+                <div class="ele-name">Not Gate</div>
+              </div>
+            </div>
+
+            <div class="comp-row">
+              <div class="comp-ele"><div class="center-img">
+                <div
+                  class="ele-img tri-sym"
+                  style="
+                    height: 5.3vh;
+                    width: 6.5vw;
+                    display: flex;
+                    justify-content: center;
+                  "
+                >
+                  <img src="new-img/tri.png" alt="" height="100%" width="95%" />
+                </div></div>
+                <div class="ele-name">Triangle wave</div>
+              </div>
+              <div class="comp-ele"><div class="center-img">
+                <div
+                  class="ele-img volt-sym"
+                  style="
+                    height: 5.3vh;
+                    width: 6.5vw;
+                    display: flex;
+                    justify-content: center;
+                  "
+                >
+                  <img
+                    src="new-img/vmeter.png"
+                    alt=""
+                    height="100%"
+                    width="60%"
+                  />
+                </div></div>
+                <div class="ele-name">Voltmeter</div>
+              </div>
+            </div>
+            <div class="comp-row">
+              <div class="comp-ele"><div class="center-img">
+                <div
+                  class="ele-img gnd-sym"
+                  style="
+                    height: 5.3vh;
+                    width: 6.5vw;
+                    display: flex;
+                    justify-content: center;
+                  "
+                >
+                  <img
+                    src="new-img/ground.png"
+                    alt=""
+                    height="100%"
+                    width="60%"
+                  />
+                </div></div>
+                <div class="ele-name">Ground</div>
+              </div>
+              <div class="comp-ele"><div class="center-img">
+                <div class="ele-img op-sym" style="height: 5.3vh; width: 6.5vw">
+                  <img
+                    src="new-img/opamp.png"
+                    alt=""
+                    height="100%"
+                    width="90%"
+                  />
+                </div></div>
+                <div
+                  class="ele-name"
+                  style="overflow: hidden; font-size: medium"
+                >
+                  Comparator
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <br /><br />
+
+        <div class="reading" id="Taken_reading">
+          <div class="sub-reading">
+            <div
+              style="
+                margin-top: -30px;
+                height: 30px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                background-color: #ff512f;
+              "
+            >
+              <h4>Observation Table</h4>
+            </div>
+            <div>
+              <table border="2px solid black" id="tab">
+                <tr>
+                  <th>S.No.</th>
+                  <th>V<sub>avg</sub> (V)</th>
+                  <th>V<sub>rms</sub> (V)</th>
+                </tr>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div id="mid">
+        <div id="diagram">
+          <div class="dia-row">
+            <div class="blank"></div>
+            <div class="hell" id="C1-back">
+              <div
+                class="use capacitor"
+                style="
+                  background: url(new-img/capacitoruse.png);
+                  background-size: contain;
+                  background-repeat: no-repeat;
+                "
+                id="C1"
+              >
+                <div id="C1T" class="upper-end">
+                  <span class="red-circle"></span>
+                </div>
+
+                <div id="C1B" class="lower-end dbl">
+                  <span class="red-circle"></span>
+                </div>
+                <div class="top-serial-no" id="C1TS">3</div>
+                <div class="bottom-serial-no" id="C1BS">4</div>
+                <div class="name" id="C1-name">C1</div>
+                <div class="name" style="width: 38px" id="C1-value"></div>
+              </div>
+            </div>
+            <div class="hell" id="M1-back">
+              <div
+                class="use mosfet-n other"
+                style="
+                  background: url(new-img/mosfetn.png);
+                  background-size: contain;
+                  background-repeat: no-repeat;
+                "
+                id="M1"
+              >
+                <div class="righttop-end" id="M1RT">
+                  <span class="red-circle"></span>
+                </div>
+                <div class="left-end" style="top: 15px" id="M1L">
+                  <span class="red-circle"></span>
+                </div>
+
+                <div class="rightbottom-end" id="M1RB">
+                  <span class="red-circle"></span>
+                </div>
+                <div
+                  id="M1RTS"
+                  style="
+                    height: 18px;
+                    position: relative;
+                    top: -35px;
+                    left: 41px;
+                  "
+                >
+                  6
+                </div>
+                <div
+                  id="M1LS"
+                  style="
+                    height: 18px;
+                    position: relative;
+                    top: -42px;
+                    left: 0px;
+                  "
+                >
+                  5
+                </div>
+                <div
+                  id="M1RBS"
+                  style="
+                    height: 18px;
+                    position: relative;
+                    top: -20px;
+                    left: 40px;
+                  "
+                >
+                  7
+                </div>
+                <div class="name" id="M1-name" style="top: -63px; left: 62px">
+                  M1
+                </div>
+              </div>
+            </div>
+            <div class="hell" id="M2-back">
+              <div
+                class="use mosfet-n other"
+                style="
+                  background: url(new-img/mosfetn.png);
+                  background-size: contain;
+                  background-repeat: no-repeat;
+                "
+                id="M2"
+              >
+                <div class="righttop-end" id="M2RT">
+                  <span class="red-circle"></span>
+                </div>
+                <div class="left-end" style="top: 15px" id="M2L">
+                  <span class="red-circle"></span>
+                </div>
+
+                <div class="rightbottom-end" id="M2RB">
+                  <span class="red-circle"></span>
+                </div>
+                <div
+                  id="M2RTS"
+                  style="
+                    height: 18px;
+                    position: relative;
+                    top: -35px;
+                    left: 41px;
+                  "
+                >
+                  9
+                </div>
+                <div
+                  id="M2LS"
+                  style="
+                    height: 18px;
+                    position: relative;
+                    top: -42px;
+                    left: 0px;
+                  "
+                >
+                  8
+                </div>
+                <div
+                  id="M2RBS"
+                  style="
+                    height: 18px;
+                    position: relative;
+                    top: -20px;
+                    left: 35px;
+                  "
+                >
+                  10
+                </div>
+                <div class="name" style="top: -63px; left: 62px" id="M2-name">
+                  M2
+                </div>
+              </div>
+            </div>
+            <div class="blank"></div>
+            <div class="hell" id="R1-back">
+              <div
+                class="use resistor"
+                style="
+                  background: url(new-img/resistoruse.png);
+                  background-size: contain;
+                  background-repeat: no-repeat;
+                "
+                id="R1"
+              >
+                <div class="upper-end" id="R1T">
+                  <span class="red-circle"></span>
+                </div>
+
+                <div class="lower-end dbl" id="R1B">
+                  <span class="red-circle"></span>
+                </div>
+
+                <div class="top-serial-no" style="top: -33px" id="R1TS">23</div>
+                <div class="bottom-serial-no" id="R1BS">24</div>
+                <div class="name" id="R1-name">R</div>
+                <div class="name" style="width: 60px" id="R1-value"></div>
+              </div>
+            </div>
+            <div class="blank"></div>
+          </div>
+          <div class="dia-row">
+            <div class="hell" id="DC1-back">
+              <div
+                class="use dcsource"
+                style="
+                  background: url(new-img/dcsourceuse.png);
+                  background-size: contain;
+                  background-repeat: no-repeat;
+                  position: relative;
+                  top: 39px;
+                "
+                id="DC1"
+              >
+                <div class="upper-end" id="DC1T">
+                  <span class="red-circle"></span>
+                </div>
+
+                <div class="lower-end dbl" id="DC1B">
+                  <span class="red-circle"></span>
+                </div>
+                <div class="top-serial-no" id="DC1TS">1</div>
+                <div class="bottom-serial-no" id="DC1BS">2</div>
+                <div class="name" id="DC1-name">DC</div>
+                <div class="name" id="DC1-value" style="width: 60px"></div>
+              </div>
+            </div>
+            <div class="blank"></div>
+            <div class="blank"></div>
+            <div class="blank"></div>
+            <div class="hell" id="VM1-back">
+              <div
+                class="use voltagem other"
+                style="
+                  background: url(new-img/vmeteruse.png);
+                  background-size: contain;
+                  background-repeat: no-repeat;
+                "
+                id="VM1"
+              >
+                <div class="upper-end" id="VM1T">
+                  <span class="red-circle"></span>
+                </div>
+
+                <div class="lower-end" id="VM1B">
+                  <span class="red-circle"></span>
+                </div>
+                <div class="top-serial-no" id="VM1TS">20</div>
+                <div class="bottom-serial-no" id="VM1BS">21</div>
+                <div class="name" id="VM1-name">VM1</div>
+              </div>
+            </div>
+            <div class="blank"></div>
+
+            <dib class="blank"></dib>
+          </div>
+          <div class="dia-row">
+            <div class="blank"></div>
+
+            <div class="blank"></div>
+            <div class="hell" id="GND1-back">
+              <div
+                class="use other"
+                id="GND1"
+                style="
+                  background: url(new-img/ground.png);
+                  background-size: contain;
+                  background-repeat: no-repeat;
+                  position: relative;
+                  left: -76px;
+                "
+              >
+                <div class="upper-end" id="GND1T">
+                  <span class="red-circle"></span>
+                </div>
+                <div
+                  id="GND1S"
+                  style="
+                    width: 17px;
+                    height: 18px;
+                    position: relative;
+                    top: -1px;
+                    left: 10px;
+                  "
+                >
+                  11
+                </div>
+                <div class="ground-name" style="left: 32px" id="GND1-name">
+                  GND1
+                </div>
+              </div>
+            </div>
+
+            <div class="blank"></div>
+            <div class="hell" id="GND2-back">
+              <div
+                class="use other"
+                id="GND2"
+                style="
+                  background: url(new-img/ground.png);
+                  background-size: contain;
+                  background-repeat: no-repeat;
+                "
+              >
+                <div class="upper-end" id="GND2T">
+                  <span class="red-circle"></span>
+                </div>
+                <div
+                  id="GND2S"
+                  style="
+                    width: 17px;
+                    height: 18px;
+                    position: relative;
+                    top: -6px;
+                    left: 10px;
+                  "
+                >
+                  22
+                </div>
+                <div class="ground-name" id="GND2-name">GND2</div>
+              </div>
+            </div>
+            <div class="blank"></div>
+            <div class="hell" id="VM3-back">
+              <div
+                class="use voltagem other"
+                style="
+                  background: url(new-img/vmeteruse.png);
+                  background-size: contain;
+                  background-repeat: no-repeat;
+                  position: relative;
+                  top: -39px;
+                  left: -22px;
+                "
+                id="VM3"
+              >
+                <div class="upper-end" id="VM3T">
+                  <span class="red-circle"></span>
+                </div>
+
+                <div class="lower-end" id="VM3B">
+                  <span class="red-circle"></span>
+                </div>
+                <div class="top-serial-no" id="VM3TS">25</div>
+                <div class="bottom-serial-no" id="VM3BS">26</div>
+                <div class="name" id="VM3-name" style="left: 55px">VLOAD</div>
+              </div>
+            </div>
+          </div>
+          <div class="dia-row">
+            <div class="blank"></div>
+            <div class="hell" id="C2-back">
+              <div
+                class="use capacitor"
+                style="
+                  background: url(new-img/capacitoruse.png);
+                  background-size: contain;
+                  background-repeat: no-repeat;
+                "
+                id="C2"
+              >
+                <div class="upper-end" id="C2T">
+                  <span class="red-circle"></span>
+                </div>
+
+                <div class="lower-end dbl" id="C2B">
+                  <span class="red-circle"></span>
+                </div>
+                <div class="top-serial-no" id="C2TS">12</div>
+                <div class="bottom-serial-no" id="C2BS">13</div>
+                <div class="name" id="C2-name">C2</div>
+                <div class="name" id="C2-value" style="width: 40px"></div>
+              </div>
+            </div>
+            <div class="hell" id="M3-back">
+              <div
+                class="use mosfet-n other"
+                style="
+                  background: url(new-img/mosfetn.png);
+                  background-size: contain;
+                  background-repeat: no-repeat;
+                "
+                id="M3"
+              >
+                <div class="righttop-end" id="M3RT">
+                  <span class="red-circle"></span>
+                </div>
+                <div class="left-end" style="top: 15px" id="M3L">
+                  <span class="red-circle"></span>
+                </div>
+
+                <div class="rightbottom-end" id="M3RB">
+                  <span class="red-circle"></span>
+                </div>
+                <div
+                  id="M3RTS"
+                  style="
+                    height: 18px;
+                    position: relative;
+                    top: -35px;
+                    left: 35px;
+                  "
+                >
+                  15
+                </div>
+                <div
+                  id="M3LS"
+                  style="
+                    height: 18px;
+                    position: relative;
+                    top: -42px;
+                    left: 0px;
+                  "
+                >
+                  14
+                </div>
+                <div
+                  id="M3RBS"
+                  style="
+                    height: 18px;
+                    position: relative;
+                    top: -20px;
+                    left: 34px;
+                  "
+                >
+                  16
+                </div>
+                <div class="name" style="top: -63px; left: 62px" id="M3-name">
+                  M3
+                </div>
+              </div>
+            </div>
+            <div class="hell" id="M4-back">
+              <div
+                class="use mosfet-n other"
+                style="
+                  background: url(new-img/mosfetn.png);
+                  background-size: contain;
+                  background-repeat: no-repeat;
+                "
+                id="M4"
+              >
+                <div class="righttop-end" id="M4RT">
+                  <span class="red-circle"></span>
+                </div>
+                <div class="left-end" style="top: 15px" id="M4L">
+                  <span class="red-circle"></span>
+                </div>
+
+                <div class="rightbottom-end" id="M4RB">
+                  <span class="red-circle"></span>
+                </div>
+                <div
+                  id="M4RTS"
+                  style="
+                    height: 18px;
+                    position: relative;
+                    top: -42px;
+                    left: 35px;
+                  "
+                >
+                  18
+                </div>
+                <div
+                  id="M4LS"
+                  style="
+                    height: 18px;
+                    position: relative;
+                    top: -42px;
+                    left: 0px;
+                  "
+                >
+                  17
+                </div>
+                <div
+                  id="M4RBS"
+                  style="
+                    height: 18px;
+                    position: relative;
+                    top: -20px;
+                    left: 34px;
+                  "
+                >
+                  19
+                </div>
+                <div class="name" style="top: -63px; left: 62px" id="M4-name">
+                  M4
+                </div>
+              </div>
+            </div>
+            <div class="blank"></div>
+            <div class="hell" id="I1-back">
+              <div
+                class="use inductor"
+                style="
+                  background: url(new-img/inductoruse.png);
+                  background-size: contain;
+                  background-repeat: no-repeat;
+                "
+                id="I1"
+              >
+                <div class="upper-end" id="I1T">
+                  <span class="red-circle"></span>
+                </div>
+
+                <div class="lower-end dbl" id="I1B">
+                  <span class="red-circle"></span>
+                </div>
+                <div class="top-serial-no" id="I1TS">27</div>
+                <div class="bottom-serial-no" id="I1BS">28</div>
+                <div class="name" id="I1-name">L</div>
+                <div class="name" id="I1-value" style="width: 60px"></div>
+              </div>
+            </div>
+            <div class="blank"></div>
+          </div>
+
+          <div class="dia-row">
+            <div class="blank"></div>
+            <div class="blank"></div>
+            <div class="blank"></div>
+            <div class="hell" id="S1-back">
+              <div
+                class="use switch other"
+                style="
+                  background: url(new-img/switchuse.png);
+                  background-size: contain;
+                  background-repeat: no-repeat;
+                "
+                id="S1"
+              >
+                <div class="upper-end" id="S1T">
+                  <span class="red-circle"></span>
+                </div>
+
+                <div class="lower-end" id="S1B">
+                  <span class="red-circle"></span>
+                </div>
+                <div class="top-serial-no" id="S1TS">31</div>
+                <div class="bottom-serial-no" id="S1BS">32</div>
+                <div class="name" id="S1-name" style="left: 45px">S1</div>
+              </div>
+            </div>
+            <div class="hell" id="VM4-back">
+              <div
+                class="use voltagem other"
+                style="
+                  background: url(new-img/vmeteruse.png);
+                  background-size: contain;
+                  background-repeat: no-repeat;
+                  position: relative;
+                  top: -15px;
+                  left: -20px;
+                "
+                id="VM4"
+              >
+                <div class="upper-end" id="VM4T">
+                  <span class="red-circle"></span>
+                </div>
+
+                <div class="lower-end" id="VM4B">
+                  <span class="red-circle"></span>
+                </div>
+                <div class="top-serial-no" id="VM4TS">29</div>
+                <div class="bottom-serial-no" id="VM4BS">30</div>
+                <div class="name" id="VM4-name">VM2</div>
+              </div>
+            </div>
+            <div class="blank"></div>
+
+            <div class="blank"></div>
+          </div>
+          <div class="dia-row">
+            <div class="blank"></div>
+
+            <div class="blank"></div>
+            <div class="hell" id="S2-back">
+              <div
+                class="use other"
+                style="
+                  background: url(new-img/switchuse.png);
+                  background-size: contain;
+                  background-repeat: no-repeat;
+                "
+                id="S2"
+              >
+                <div class="upper-end" id="S2T">
+                  <span class="red-circle"></span>
+                </div>
+
+                <div class="lower-end" id="S2B">
+                  <span class="red-circle"></span>
+                </div>
+                <div class="top-serial-no" id="S2TS">33</div>
+                <div class="bottom-serial-no" id="S2BS">34</div>
+                <div class="name" id="S2-name" style="left: 45px">S2</div>
+              </div>
+            </div>
+            <div class="hell" id="G2-back">
+              <div
+                class="use other"
+                id="G2"
+                style="
+                  background: url(new-img/notuse.png);
+                  background-size: contain;
+                  background-repeat: no-repeat;
+                "
+              >
+                <div class="upper-end" id="G2T">
+                  <span class="red-circle"></span>
+                </div>
+
+                <div class="lower-end" id="G2B">
+                  <span class="red-circle"></span>
+                </div>
+                <div class="top-serial-no" id="G2TS">35</div>
+                <div class="bottom-serial-no" id="G2BS">36</div>
+                <div class="name" id="G2-name" style="left: 45px">G</div>
+              </div>
+            </div>
+
+            <div class="hell" id="GND3-back">
+              <div
+                class="use other"
+                id="GND3"
+                style="
+                  background: url(new-img/ground.png);
+                  background-size: contain;
+                  background-repeat: no-repeat;
+                "
+              >
+                <div class="upper-end" id="GND3T">
+                  <span class="red-circle"></span>
+                </div>
+                <div
+                  id="GND3S"
+                  style="
+                    width: 17px;
+                    height: 18px;
+                    position: relative;
+                    top: -6px;
+                    left: 10px;
+                  "
+                >
+                  37
+                </div>
+                <div class="ground-name" id="GND3-name">GND3</div>
+              </div>
+            </div>
+            <div class="blank"></div>
+          </div>
+          <div class="dia-row">
+            <div class="blank"></div>
+            <div class="hell" id="VM5-back">
+              <div
+                class="use voltagem other"
+                id="VM5"
+                style="
+                  background: url('new-img/vmeter.png');
+                  background-size: contain;
+                  background-repeat: no-repeat;
+                "
+              >
+                <div class="left-end" id="VM5L">
+                  <span class="red-circle"></span>
+                </div>
+                <div class="right-end" id="VM5R">
+                  <span class="red-circle"></span>
+                </div>
+                <div class="left-serial-no-ac" id="VM5LS">38</div>
+                <div class="right-serial-no-ac" id="VM5RS">39</div>
+                <div class="left-name" id="VM5-name">VSINE</div>
+              </div>
+            </div>
+
+            <div class="blank"></div>
+            <div class="hell" id="opamp1-back">
+              <div
+                class="use other"
+                id="opamp1"
+                style="
+                  background: url(new-img/opampn.png);
+                  background-size: contain;
+                  background-repeat: no-repeat;
+                "
+              >
+                <div
+                  id="opamp1T"
+                  style="
+                    position: relative;
+                    height: 10px;
+                    width: 10px;
+                    top: 0px;
+                    left: 25px;
+                  "
+                >
+                  <span class="red-circle"></span>
+                </div>
+
+                <div
+                  id="opamp1RB"
+                  style="
+                    position: relative;
+                    height: 10px;
+                    width: 10px;
+                    top: 40px;
+                    left: 41px;
+                  "
+                >
+                  <span class="red-circle"></span>
+                </div>
+                <div
+                  id="opamp1LB"
+                  style="
+                    position: relative;
+                    height: 10px;
+                    width: 10px;
+                    top: 30px;
+                    left: 8px;
+                  "
+                >
+                  <span class="red-circle"></span>
+                </div>
+
+                <div
+                  id="opamp1TS"
+                  style="
+                    width: 17px;
+                    height: 18px;
+                    position: relative;
+                    top: -34px;
+                    left: 8px;
+                  "
+                >
+                  40
+                </div>
+                <div
+                  id="opamp1LBS"
+                  style="
+                    position: relative;
+                    top: -2px;
+                    left: -9px;
+                    width: 17px;
+                    height: 18px;
+                  "
+                >
+                  41
+                </div>
+                <div
+                  id="opamp1RBS"
+                  style="
+                    width: 17px;
+                    height: 18px;
+                    position: relative;
+                    top: -21px;
+                    left: 53px;
+                  "
+                >
+                  42
+                </div>
+                <div
+                  class="left-name"
+                  id="opamp1-name"
+                  style="top: -69px; left: 52px; font-size: small"
+                >
+                  COMPARATOR
+                </div>
+              </div>
+            </div>
+
+            <div class="blank"></div>
+            <div class="hell" id="VM7-back">
+              <div
+                class="use voltagem other"
+                style="
+                  background: url('new-img/vmeter.png');
+                  background-size: contain;
+                  background-repeat: no-repeat;
+                "
+                id="VM7"
+              >
+                <div class="left-end" id="VM7L">
+                  <span class="red-circle"></span>
+                </div>
+                <div class="right-end" id="VM7R">
+                  <span class="red-circle"></span>
+                </div>
+                >
+                <div
+                  class="left-serial-no-ac"
+                  style="left: -13px; top: -3px"
+                  id="VM7LS"
+                >
+                  43
+                </div>
+                <div class="right-serial-no-ac" style="top: -20px" id="VM7RS">
+                  44
+                </div>
+                <div class="left-name" id="VM7-name">VTRI</div>
+              </div>
+            </div>
+            <div class="blank"></div>
+          </div>
+          <div class="dia-row">
+            <div class="hell" id="GND4-back">
+              <div
+                class="use other"
+                id="GND4"
+                style="
+                  background: url(new-img/ground.png);
+                  background-size: contain;
+                  background-repeat: no-repeat;
+                "
+              >
+                <div class="upper-end" id="GND4T">
+                  <span class="red-circle"></span>
+                </div>
+                <div
+                  id="GND4S"
+                  style="
+                    width: 17px;
+                    height: 18px;
+                    position: relative;
+                    top: -6px;
+                    left: 10px;
+                  "
+                >
+                  45
+                </div>
+                <div class="ground-name" id="GND4-name">GND4</div>
+              </div>
+            </div>
+            <div class="blank"></div>
+            <div class="hell" id="AC1-back">
+              <div
+                class="use acsource1"
+                style="
+                  background: url(new-img/ac.png);
+                  background-size: contain;
+                  background-repeat: no-repeat;
+                "
+                id="AC1"
+              >
+                <div class="left-end" id="AC1L">
+                  <span class="red-circle"></span>
+                </div>
+                <div class="right-end" id="AC1R">
+                  <span class="red-circle"></span>
+                </div>
+                <div class="left-serial-no-ac" id="AC1LS">46</div>
+                <div class="right-serial-no-ac" id="AC1RS">47</div>
+                <div class="left-name" id="AC1-name">SINE</div>
+                <div class="ac-value" id="AC1-volt"></div>
+                <div class="ac-value" id="AC1-freq"></div>
+              </div>
+            </div>
+
+            <div class="blank"></div>
+
+            <div class="hell" id="AC2-back">
+              <div
+                class="use acsource"
+                style="
+                  background: url(new-img/triwave.png);
+                  background-size: contain;
+                  background-repeat: no-repeat;
+                "
+                id="AC2"
+              >
+                <div class="left-end" id="AC2L">
+                  <span class="red-circle"></span>
+                </div>
+                <div class="right-end" id="AC2R">
+                  <span class="red-circle"></span>
+                </div>
+                <div class="left-serial-no-ac" id="AC2LS">48</div>
+                <div class="right-serial-no-ac" id="AC2RS">49</div>
+                <div class="left-name" id="AC2-name">TRI</div>
+                <div class="ac-value" id="AC2-volt"></div>
+                <div class="ac-value" id="AC2-freq"></div>
+              </div>
+            </div>
+
+            <div class="blank"></div>
+            <div class="hell" id="GND6-back">
+              <div
+                class="use other"
+                id="GND6"
+                style="
+                  background: url(new-img/ground.png);
+                  background-size: contain;
+                  background-repeat: no-repeat;
+                "
+              >
+                <div class="upper-end" id="GND6T">
+                  <span class="red-circle"></span>
+                </div>
+                <div
+                  id="GND6S"
+                  style="
+                    width: 17px;
+                    height: 18px;
+                    position: relative;
+                    top: -6px;
+                    left: 10px;
+                  "
+                >
+                  50
+                </div>
+                <div class="ground-name" id="GND6-name">GND5</div>
+              </div>
+            </div>
+          </div>
+          <div class="dia-row">
+            <div class="blank"></div>
+            <div class="blank"></div>
+            <div class="blank"></div>
+            <div class="hell" id="GND7-back">
+              <div
+                class="use other"
+                id="GND7"
+                style="
+                  background: url(new-img/ground.png);
+                  background-size: contain;
+                  background-repeat: no-repeat;
+                "
+              >
+                <div class="upper-end" id="GND7T">
+                  <span class="red-circle"></span>
+                </div>
+                <div
+                  id="GND7S"
+                  style="
+                    width: 17px;
+                    height: 18px;
+                    position: relative;
+                    top: -6px;
+                    left: 10px;
+                  "
+                >
+                  51
+                </div>
+                <div class="ground-name" id="GND7-name">GND6</div>
+              </div>
+            </div>
+
+            <div class="blank"></div>
+            <div class="blank"></div>
+
+            <div class="blank"></div>
+          </div>
+        </div>
+
+        <div style="margin-left: 80px" class="btn-bar">
+          <button
+            style="left: -80px; top: 5px"
+            id="check1"
+            class="button-82-pushable"
+            role="button"
+          >
+            <span class="button-82-shadow"></span>
+            <span class="button-82-edge"></span>
+            <span style="padding-left: 23px" class="button-82-front text"
+              >CHECK</span
+            >
+          </button>
+
+          <button
+            style="margin-left: -120px; top: 5px"
+            class="button-82-pushable"
+            onclick="showreadings()"
+            role="button"
+          >
+            <span class="button-82-shadow"></span>
+            <span class="button-82-edge"></span>
+            <span style="padding-left: 37px" class="button-82-front text"
+              >ADD</span
+            >
+          </button>
+
+          <button
+            style="left: -40px; top: 5px"
+            onclick="Reset()"
+            class="button-82-pushable"
+            role="button"
+          >
+            <span class="button-82-shadow"></span>
+            <span class="button-82-edge"></span>
+            <span style="padding-left: 25px" class="button-82-front text"
+              >RESET</span
+            >
+          </button>
+
+          <button
+            style="left: -80px; top: 5px"
+            class="button-82-pushable"
+            onclick="print()"
+            role="button"
+          >
+            <span class="button-82-shadow"></span>
+            <span class="button-82-edge"></span>
+            <span style="padding-left: 29px" class="button-82-front text"
+              >PRINT</span
+            >
+          </button>
+        </div>
+      </div>
+      <div id="right">
+
+        <div style="display: flex; justify-content: flex-end; position: relative; z-index: 3;">
+      <div class="dropdown">
+        <button class="dropbtn">INSTRUCTIONS</button>
+        <div style="position: relative;
+        left: -304px;">
+
+        
+        <div class="dropdown-content">
+          <ul type="none">
+            <br />
+            <li>
+              <b>STEP 1:</b> Drag and drop the below components to create the circuit.
+            </li>
+            <br />
+            <li>
+              <b>DC Source – 1, Capacitor - 2, Mosfet N – 4, Resistor - 1,</b>
+            </li>
+            <br />
+            <li>
+              <b>Inductor – 1, AC Source – 1, Triangle wave – 1, Switch – 2</b>
+            </li>
+            <br />
+            <li>
+              <b>Not Gate- 1, Comparator -1, Voltmeter – 5, Ground – 6</b>
+            </li>
+            <br />
+            <li>
+              <b>STEP 2:</b> Make the connections as per the instructions given
+              below:
+            </li>
+            <br />
+
+            <li>(a) (1-3, 3-6, 6-9), (2-13, 13-16, 16-19)</li>
+            <br />
+            <li>(b) (4-11, 11-12, 7-15, 10-18)</li>
+            <br />
+            <li>(c) (7-23, 20-23, 21-22, 23-25)</li>
+            <br />
+            <li>(d) (24-27, 26-28, 18-28, 28-29)</li>
+            <br />
+            <li>(e) (30-37, 5-31, 17-31, 14-33)</li>
+            <br />
+            <li>(f) (8-33, 32-35, 41-47, 42-48)</li>
+            <br />
+            <li>(g) (34-40, 36-40, 39-47, 38-45)</li>
+            <br />
+            <li>(h) (48-43, 44-50, 46-51, 49-51)</li>
+            <br />
+
+            <li><b>Note: Click on the wire to delete the connection.</b></li>
+            <br />
+
+            <li>
+              <b>STEP 3:</b> Click on the <b>CHECK</b> button to check the
+              connections.
+            </li>
+            <br />
+            <li>
+              <b>Note: Right click on the component to open the dialog box to edit the properties of the component.  </b>
+            </li><br>
+
+            <li>
+              <b>STEP 4:</b> After input the values for all the required
+              components the waveform will get plot automatically.
+            </li>
+            <br />
+            <li>
+              <b>STEP 5:</b> Now, Click on the <b>ADD</b> button to insert the
+              reading into the observation table.
+            </li>
+            <br />
+            <li>
+              <b>STEP 6:</b> Now, you can input different values as per your
+              requirement so that the new waveform will get plotted according to
+              the new values set.
+            </li>
+            <br />
+            <li>
+              <b>STEP 7:</b> Repeat <b>Step 5</b> to again insert the reading
+              into the table and now repeat <b>Steps 6 to 7</b> to take more
+              readings.
+            </li>
+            <br />
+            <li>
+              <b>STEP 8:</b> Click on the <b>PRINT</b> button to take out the
+              print of the webpage.
+            </li>
+            <br />
+            <li>
+              <b>STEP 9:</b> Click on the <b>RESET</b> button to reload the
+              webpage.
+            </li>
+          </ul>
+        </div></div>
+      </div></div>
+      <div class="Graph" style="position: relative; z-index: 1; padding-top: 54px;" id="graph-new"></div></div>
+    </div>
+
+    <footer
+      id="copyright"
+      style="
+        padding: 7px;
+        height: 30px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      "
+    >
+       Copyright &copy; 2023 | Virtual Labs, IIT Roorkee
+    </footer>
+
+    <script src="js/script.js"></script>
+    <script src="js/graph.js"></script>
+  </body>
+</html>
