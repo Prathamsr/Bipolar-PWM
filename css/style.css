@@ -538,7 +538,7 @@ body{
    background-color: unset;
  }
  footer{
-  width: 2011px;
+  width: 100%;
   background-color: rgb(51, 51, 51);
  }
  #diagram{
